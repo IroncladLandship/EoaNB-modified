@@ -1,0 +1,22 @@
+﻿###########################
+# Italian Events
+###########################
+
+add_namespace = italy
+
+country_event = {
+	id = italy.13371
+	title = italy.13371.t
+	desc = italy.13371.d
+	picture = GFX_report_event_royal_parade
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = italy.13371.a
+		remove_ideas = ITA_king
+	}
+	option = {
+		name = italy.13371.b
+	}
+}
