@@ -1,0 +1,522 @@
+focus_tree = {
+	id = italian_focus
+
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = ITA
+		}
+	}
+	
+	default = no
+
+	continuous_focus_position = { x = 50 y = 1100 }
+
+	focus = {
+		id = ITA_treaty_of_turin
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		x = 3
+		y = 0
+		cost = 10
+
+		completion_reward = {
+			FRA = {
+				transfer_state = 735
+			}
+		}
+	}
+
+	focus = {
+		id = ITA_annex_central_provinces
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 3
+		y = 1
+		cost = 10
+
+		prerequisite = {focus = ITA_treaty_of_turin}
+
+		completion_reward = {
+			custom_effect_tooltip = ITA_really_bro
+		}
+	}
+
+	focus = {
+		id = ITA_the_deep_south
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 3
+		y = 2
+		cost = 10
+
+		prerequisite = {focus = ITA_annex_central_provinces}
+
+		completion_reward = {
+			custom_effect_tooltip = ITA_really_bro
+		}
+	}
+
+	focus = {
+		id = ITA_new_nation
+		icon = GFX_focus_generic_home_defense
+		x = 3
+		y = 3
+		cost = 10
+
+		prerequisite = {focus = ITA_the_deep_south}
+
+		completion_reward = {
+			add_national_unity = 0.05
+		}
+	}
+
+	###########################################################################
+
+	focus = {
+		id = ITA_pope_territory
+		icon = GFX_goal_tfv_sever_ties_with_uk
+		x = 1
+		y = 4
+		cost = 10
+
+		prerequisite = {focus = ITA_new_nation}
+
+		completion_reward = {
+			FRA = add_opinion_modifier = { target = ITA modifier = ITA_threatened_pope }
+			custom_effect_tooltip = ITA_really_bro
+		}
+	}
+
+	focus = {
+		id = ITA_prussia_claim
+		icon = GFX_goal_generic_major_war
+		x = 1
+		y = 5
+		cost = 10
+
+		prerequisite = {focus = ITA_pope_territory}
+
+		completion_reward = {
+			add_state_claim = 160
+			custom_effect_tooltip = ITA_prussia_claim_tooltip
+		}
+	}
+
+	focus = {
+		id = ITA_french_rivalry
+		icon = GFX_goal_anschluss
+		x = 0
+		y = 6
+		cost = 10
+		mutually_exclusive = {
+			FRA_french_friendship
+		}
+
+		prerequisite = {focus = ITA_prussia_claim}
+
+		completion_reward = {
+			add_opinion_modifier = { target = FRA modifier = medium_decrease }
+			add_opinion_modifier = { target = GER modifier = medium_increase }
+		}
+	}
+
+	focus = {
+		id = ITA_rome_enemy
+		icon = GFX_focus_SAF_colonialist_crusade
+		x = 0
+		y = 7
+		cost = 10
+
+		prerequisite = {focus = ITA_french_rivalry}
+
+		completion_reward = {
+			FRA = {country_event = ita_new.1}
+		}
+	}
+
+	focus = {
+		id = ITA_french_friendship
+		icon = GFX_goal_anschluss
+		x = 2
+		y = 6
+		cost = 10
+		mutually_exclusive = {
+			FRA_french_rivalry
+		}
+		prerequisite = {focus = ITA_prussia_claim}
+
+		completion_reward = {
+			add_opinion_modifier = { target = FRA modifier = medium_increase }
+			add_opinion_modifier = { target = GER modifier = medium_decrease }
+		}
+	}
+
+	focus = {
+		id = ITA_rome_defense
+		icon = GFX_focus_generic_home_defense
+		x = 2
+		y = 7
+		cost = 10
+
+		prerequisite = {focus = ITA_french_friendship}
+
+		completion_reward = {
+			FRA = {country_event = ita_new.2}
+		}
+	}
+
+	focus = {
+		id = ITA_la_breccia
+		icon = GFX_focus_SAF_colonialist_crusade
+		x = 1
+		y = 8
+		cost = 10
+
+		prerequisite = {focus = ITA_french_friendship focus = ITA_french_rivalry}
+
+		completion_reward = {
+			custom_effect_tooltip = ITA_really_bro
+		}
+	}
+
+	focus = {
+		id = ITA_rome_capital
+		icon = GFX_focus_generic_home_defense
+		x = 1
+		y = 9
+		cost = 10
+
+		prerequisite = {focus = ITA_la_breccia}
+
+		completion_reward = {
+			set_capital = 2
+		}
+	}
+
+	focus = {
+		id = ITA_claims_anti_austria
+		icon = GFX_goal_generic_more_territorial_claims
+		x = 1
+		y = 10
+		cost = 10
+
+		prerequisite = {focus = ITA_rome_capital}
+
+		completion_reward = {
+			add_state_claim = 39
+			add_state_claim = 736
+		}
+	}
+
+	###########################################################################
+
+	focus = {
+		id = ITA_politic_start
+		icon = GFX_focus_rom_royal_dictatorship
+		x = 7
+		y = 4
+		cost = 10
+
+		prerequisite = {focus = ITA_new_nation}
+
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = ITA_pol_want
+		icon = GFX_goal_generic_support_democracy
+		x = 5
+		y = 5
+		cost = 10
+
+		prerequisite = {focus = ITA_politic_start}
+		mutually_exclusive = { focus = ITA_pol_dont_want }
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = ITA_elections
+		icon = GFX_goal_generic_national_unity
+		x = 5
+		y = 6
+		cost = 10
+
+		prerequisite = {focus = ITA_pol_want}
+
+		completion_reward = {
+			add_national_unity = = 0.10
+			set_politics = { elections_allowed = yes }
+		}
+	}
+
+	focus = {
+		id = ITA_communism
+		icon = GFX_goal_generic_support_communism
+		x = 4
+		y = 7
+		cost = 10
+
+		prerequisite = {focus = ITA_elections}
+		mutually_exclusive = { focus = ITA_democracy }
+		available = {
+			OR = {
+				radical_socialism > 0.4
+				marxism_leninism > 0.4
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					radical_socialism > 0.4
+
+				}
+				set_politics = { ruling_party = radical_socialism elections_allowed = yes }
+			}
+			if = {
+				limit = {
+					marxism_leninism > 0.4
+				}
+				set_politics = { ruling_party = marxism_leninism elections_allowed = yes }
+			}
+			add_popularity = { ideology = radical_socialism popularity = 0.15 }
+			add_popularity = { ideology = marxism_leninism popularity = 0.15 }
+		}
+	}
+
+	focus = {
+		id = ITA_no_king
+		icon = GFX_focus_rom_abdicate
+		x = 4
+		y = 8
+		cost = 10
+
+		prerequisite = {focus = ITA_communism}
+
+		completion_reward = {
+			remove_ideas = ITA_king
+		}
+	}
+
+	focus = {
+		id = ITA_democracy
+		icon = GFX_goal_generic_support_democracy
+		x = 6
+		y = 7
+		cost = 10
+
+		prerequisite = {focus = ITA_elections}
+		mutually_exclusive = { focus = ITA_communism }
+		available = {
+			OR = {
+				traditional_conservatism > 0.4
+				democratic_socialism > 0.4
+				economic_liberalism > 0.4
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					traditional_conservatism > 0.4
+
+				}
+				set_politics = { ruling_party = traditional_conservatism elections_allowed = yes }
+			}
+			if = {
+				limit = {
+					democratic_socialism > 0.4
+				}
+				set_politics = { ruling_party = democratic_socialism elections_allowed = yes }
+			}
+			if = {
+				limit = {
+					economic_liberalism > 0.4
+				}
+				set_politics = { ruling_party = economic_liberalism elections_allowed = yes }
+			}
+			add_popularity = { ideology = traditional_conservatism popularity = 0.15 }
+			add_popularity = { ideology = democratic_socialism popularity = 0.15 }
+			add_popularity = { ideology = economic_liberalism popularity = 0.15 }
+		}
+	}
+
+	focus = {
+		id = ITA_democratic_king
+		icon = GFX_focus_rom_abdicate
+		x = 6
+		y = 8
+		cost = 10
+
+		prerequisite = {focus = ITA_democracy}
+
+		completion_reward = {
+			country_event = italy.13371
+		}
+	}
+
+	focus = {
+		id = ITA_pol_dont_want
+		icon = GFX_focus_generic_strike_at_democracy2
+		x = 9
+		y = 5
+		cost = 10
+
+		prerequisite = {focus = ITA_politic_start}
+		mutually_exclusive = { focus = ITA_pol_want }
+		completion_reward = {
+			add_national_unity = 0.10
+		}
+	}
+
+	focus = {
+		id = ITA_great_state
+		icon = GFX_focus_generic_italy_first
+		x = 9
+		y = 6
+		cost = 10
+
+		prerequisite = {focus = ITA_pol_dont_want}
+
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+
+	focus = {
+		id = ITA_victor
+		icon = GFX_focus_rom_royal_dictatorship
+		x = 8
+		y = 7
+		cost = 10
+
+		prerequisite = {focus = ITA_great_state}
+		mutually_exclusive = {focus = ITA_savoy_house}
+		completion_reward = {
+			add_national_unity = 0.10
+		}
+	}
+
+	focus = {
+		id = ITA_non_demo
+		icon = GFX_focus_generic_support_the_left_right
+		x = 8
+		y = 8
+		cost = 10
+
+		prerequisite = {focus = ITA_victor}
+
+		available = {
+			OR = {
+				parliamental_oligarchy > 0.4
+				totalitarian_nationalism > 0.4
+				despotic_autocracy > 0.4
+			}
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					parliamental_oligarchy > 0.4
+
+				}
+				set_politics = { ruling_party = parliamental_oligarchy elections_allowed = yes }
+			}
+			if = {
+				limit = {
+					totalitarian_nationalism > 0.4
+				}
+				set_politics = { ruling_party = totalitarian_nationalism elections_allowed = yes }
+			}
+			if = {
+				limit = {
+					despotic_autocracy > 0.4
+				}
+				set_politics = { ruling_party = despotic_autocracy elections_allowed = yes }
+			}
+			add_popularity = { ideology = parliamental_oligarchy popularity = 0.15 }
+			add_popularity = { ideology = totalitarian_nationalism popularity = 0.15 }
+			add_popularity = { ideology = despotic_autocracy popularity = 0.15 }
+		}
+	}
+
+	focus = {
+		id = ITA_savoy_house
+		icon = GFX_focus_cze_german_puppet
+		x = 11
+		y = 8
+
+		prerequisite = {focus = ITA_great_state}
+		mutually_exclusive = {focus = ITA_victor}
+		completion_reward = {
+			add_national_unity = -0.10
+			add_political_power = 300
+		}
+	}
+
+	focus = {
+		id = ITA_savoy_no_king
+		icon = GFX_focus_rom_abdicate
+		x = 11
+		y = 9
+		cost = 10
+
+		prerequisite = {focus = ITA_savoy_house}
+
+		completion_reward = {
+			remove_ideas = ITA_king
+		}
+	}
+
+	focus = {
+		id = ITA_rexism_start
+		icon = GFX_goal_support_fascism
+		x = 10
+		y = 9
+
+		prerequisite = {focus = ITA_savoy_no_king}
+		mutually_exclusive = {focus = ITA_theocracy_start}
+		available = {
+			rexism_falangism > 0.4
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					rexism_falangism > 0.4
+
+				}
+				set_politics = { ruling_party = rexism_falangism elections_allowed = yes }
+			}
+			add_popularity = { ideology = rexism_falangism popularity = 0.15 }
+		}
+	}
+
+	focus = {
+		id = ITA_theocracy_start
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		x = 12
+		y = 9
+
+		prerequisite = {focus = ITA_savoy_no_king}
+		mutually_exclusive = {focus = ITA_rexism_start}
+		available = {
+			theocracy > 0.4
+		}
+
+		completion_reward = {
+			if = {
+				limit = {
+					theocracy > 0.4
+
+				}
+				set_politics = { ruling_party = theocracy elections_allowed = yes }
+			}
+			add_popularity = { ideology = theocracy popularity = 0.15 }
+		}
+	}
+}
